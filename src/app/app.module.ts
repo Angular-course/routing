@@ -12,6 +12,11 @@ import {FormsModule} from '@angular/forms';
 import {ServersService} from './servers/servers.service';
 import { PageNoteFoundComponent } from './page-note-found/page-note-found.component';
 import {AppRoutingModule} from './app-routing.module';
+import {AuthGuard} from './auth-guard.service';
+import {AuthService} from './auth.service';
+import {CanDeactivateGuard} from './servers/edit-server/can-deactivate-guard.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import {ServerResolver} from './servers/server/server-resolver.service';
 
 @NgModule({
     declarations: [
@@ -22,14 +27,15 @@ import {AppRoutingModule} from './app-routing.module';
         ServerComponent,
         EditServerComponent,
         UserComponent,
-        PageNoteFoundComponent
+        PageNoteFoundComponent,
+        ErrorPageComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         AppRoutingModule
     ],
-    providers: [ServersService],
+    providers: [ServersService, AuthGuard, AuthService, CanDeactivateGuard, ServerResolver],
     bootstrap: [AppComponent]
 })
 export class AppModule {
